@@ -2,6 +2,6 @@
 # including in a project's CHANGELOG for example
 new_migration = git.added_files.include? 'db/migrate/*.rb'
 
-if new_migration && !git.added_files.all? {|file| file.include?("db/migrate/") }
+if new_migration && git.modified_files != ['db/schema.rb']
   fail "Please open an separate PR with only the migrations!"
 end
